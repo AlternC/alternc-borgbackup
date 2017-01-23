@@ -29,6 +29,8 @@ borg_execution() {
                 fi
                 borg create -v --stats $REPO::$ARCHIVE_NAME $REP
 
+		borg prune -v --list $REPO --keep-daily=7 --keep-weekly=4 --keep-monthly=6
+
         read GID LOGIN || true
         done
 }
