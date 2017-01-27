@@ -22,7 +22,7 @@ borg_execution() {
         while [ "$LOGIN" ] ; do
                 REP="$(get_html_path_by_name "$LOGIN")"
                 REPO="/var/backups/borg/$LOGIN"
-                ARCHIVE_NAME=$(date +%Y%M%d)
+                ARCHIVE_NAME=$(date +%Y%m%d)
 
                 if [ ! -d $REPO ]; then
                         borg init $REPO
