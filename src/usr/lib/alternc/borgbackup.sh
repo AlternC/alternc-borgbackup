@@ -1,6 +1,5 @@
 #!/bin/bash
 PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin
-umask 022
 
 CONFIG_FILE="/usr/lib/alternc/functions.sh"
 export BORG_PASSPHRASE='PASSPHRASSE'
@@ -13,8 +12,8 @@ if [ ! -r "$CONFIG_FILE" ]; then
 fi
 source "$CONFIG_FILE"
 
-if [ `id -u` -ne 0 ]; then
-    echo "$0 must be launched as root"
+if [ `id -u` -ne 1999 ]; then
+    echo "$0 must be launched as alterncpanel"
     exit 1
 fi
 

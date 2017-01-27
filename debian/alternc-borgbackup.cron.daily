@@ -1,1 +1,1 @@
-0 2 * * *       root    /usr/lib/alternc/borgbackup.sh
+0 2 * * *       alterncpanel    /usr/lib/alternc/borgbackup.sh
