@@ -27,7 +27,8 @@ borg_execution() {
                 if [ ! -d $REPO ]; then
                         borg init $REPO
                 fi
-                borg create -v --stats $REPO::$ARCHIVE_NAME $REP
+                cd $REP
+                borg create -v --stats -e backup $REPO::$ARCHIVE_NAME .
 
 		borg prune -v --list $REPO --keep-daily=7 --keep-weekly=4 --keep-monthly=6
 
