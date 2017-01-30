@@ -1,0 +1,13 @@
+#!/bin/bash 
+
+case "$1" in
+    configure)
+        #Add alterncpanel to fuse group
+        usermod -aG fuse alterncpanel
+        #Correct fuse mount /dev/ 
+        #https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=617667
+        chmod g+rw /dev/fuse
+        chgrp fuse /dev/fuse
+    ;;
+esac
+exit 0
