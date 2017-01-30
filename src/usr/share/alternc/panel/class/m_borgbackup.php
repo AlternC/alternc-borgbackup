@@ -62,9 +62,8 @@ class m_borgbackup {
 
         $result = false;
 
-        if (!$bro->CreateDir($this->backup_dir_local, $archive_name)) {
-            return false;
-        }
+        //TODO : think to check directory creation (yet empty or new)
+        $bro->CreateDir($this->backup_dir_local, $archive_name);
 
         $exec = "export BORG_PASSPHRASE='".$this->borgbackup_passphrase."'; ".$this->borgbackup_bin." mount ".$this->backup_path."/".$mem->user['login']."::".$archive_name." ".$bro->convertabsolute($this->backup_dir_local."/".$archive_name,0);
 
