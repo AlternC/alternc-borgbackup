@@ -8,6 +8,8 @@ case "$1" in
         #https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=617667
         chmod g+rw /dev/fuse
         chgrp fuse /dev/fuse
+        #Update configurations variables
+        /usr/share/alternc/install/upgrade/alternc-borgbackup.php
     ;;
 esac
 exit 0
