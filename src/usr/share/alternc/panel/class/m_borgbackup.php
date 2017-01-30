@@ -5,6 +5,7 @@ class m_borgbackup {
     private $borgbackup_bin="";
     private $borgbackup_passphrase="";
     private $backup_path="";
+    private $backup_dir_local="backup/";
 
     function hook_menu() {
 
@@ -47,5 +48,23 @@ class m_borgbackup {
 
         return $result;
     }
-}
 
+    function mount($archive_name) {
+
+        global $mem, $bro;
+
+        $result = false;
+
+        if (!$bro->CreateDir($this->backup_dir_local, $archive_name)) {
+            return false;
+        }
+
+        $exec = "export BORG_PASSPHRASE='".$this->borgbackup_passphrase."'; ".$this->borgbackup_bin." mount ".$this->backup_path."/".$mem->user['login']."::".$archive_name." ".$bro->convertabsolute($this->backup_dir_local."/".$archive_name,0);
+
+        if ($result = exec($exec,$output,$return_var)) {
+            return true;
+        }
+
+        return false;
+    }
+}
