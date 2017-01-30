@@ -27,8 +27,12 @@ borg_execution() {
                 if [ ! -d $REPO ]; then
                         borg init $REPO
                 fi
+
+                for local_mounted in $REP/$RESTORE_DIR/*; do
+                        fusermount -u $local_mounted
+                done
+
                 cd $REP
-                fusermount -u $REP/$RESTORE_DIR/*
                 borg create -v --stats -e backup $REPO::$ARCHIVE_NAME .
 
 		borg prune -v --list $REPO --keep-daily=7 --keep-weekly=4 --keep-monthly=6
