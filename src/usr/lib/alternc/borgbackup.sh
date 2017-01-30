@@ -2,11 +2,6 @@
 PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin
 
 CONFIG_FILE="/usr/lib/alternc/functions.sh"
-RESTORE_DIR="backup"
-
-export BORG_PASSPHRASE='PASSPHRASSE'
-
-
 
 if [ ! -r "$CONFIG_FILE" ]; then
     echo "Can't access $CONFIG_FILE."
@@ -18,6 +13,9 @@ if [ `id -u` -ne 1999 ]; then
     echo "$0 must be launched as alterncpanel"
     exit 1
 fi
+
+RESTORE_DIR=$(mysql_query 'SELECT value FROM variable WHERE name="borgbackup_backup_dir_local" LIMIT 1;')
+export BORG_PASSPHRASE=$(mysql_query 'SELECT value FROM variable WHERE name="borgbackup_passphrase" LIMIT 1;')
 
 borg_execution() {
         read GID LOGIN || true

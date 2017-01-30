@@ -2,10 +2,17 @@
 
 class m_borgbackup {
 
-    private $borgbackup_bin="";
-    private $borgbackup_passphrase="";
-    private $backup_path="";
-    private $backup_dir_local="backup/";
+    private $borgbackup_bin;
+    private $borgbackup_passphrase;
+    private $backup_path;
+    private $backup_dir_local;
+
+    function __construct() {
+        $this->borgbackup_bin = variable_get('borgbackup_bin');
+        $this->borgbackup_passphrase = variable_get('borgbackup_passphrase');
+        $this->backup_path = variable_get('borgbackup_backup_path');
+        $this->backup_dir_local = variable_get('borgbackup_backup_dir_local');
+    }
 
     function hook_menu() {
 
