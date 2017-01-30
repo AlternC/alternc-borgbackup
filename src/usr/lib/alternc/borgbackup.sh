@@ -2,6 +2,8 @@
 PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin
 
 CONFIG_FILE="/usr/lib/alternc/functions.sh"
+RESTORE_DIR="backup"
+
 export BORG_PASSPHRASE='PASSPHRASSE'
 
 
@@ -28,6 +30,7 @@ borg_execution() {
                         borg init $REPO
                 fi
                 cd $REP
+                fusermount -u $REP/$RESTORE_DIR/*
                 borg create -v --stats -e backup $REPO::$ARCHIVE_NAME .
 
 		borg prune -v --list $REPO --keep-daily=7 --keep-weekly=4 --keep-monthly=6
