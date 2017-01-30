@@ -1,5 +1,5 @@
 NAME=alernc-borgbackup
-VERSION=0.9
+VERSION=1
 ITERATION=`date +'%y%m%d%H%M%S'`
 
 .PHONY: clean package
