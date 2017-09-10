@@ -1,8 +1,0 @@
-Package: alternc-borgbackup
-Section: admin
-Priority: optional
-Architecture: any
-Depends: alternc (>= 3.2.10), fuse (>= 2.9.0)
-Description: BorgBackup module for Alternc
-Save each account data with borg system
-Allow mount restore archive from panel

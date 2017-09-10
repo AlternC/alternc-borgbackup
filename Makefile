@@ -1,6 +1,14 @@
 NAME=alternc-borgbackup
-VERSION=1.0.1
-ITERATION=`date +'%y%m%d%H%M%S'`
+VERSION=$(shell git tag -l --points-at HEAD)
+ITERATION=""
+
+ifeq ($(strip $(VERSION)),)
+	VERSION=$(shell git describe --tags --abbrev=0)
+	ifeq ($(strip $(VERSION)),)
+		VERSION="0.0.0"
+	endif
+	ITERATION=`date +'%y%m%d%H%M%S'`
+endif
 
 .PHONY: clean package
 
@@ -8,6 +16,9 @@ all: clean package
 
 clean:
 	rm -f $(NAME)_*.deb
+
+translate:
+	po2debconf -o debian/templates debian/templates
 
 package:
 	fpm -s dir -t deb \
@@ -18,7 +29,7 @@ package:
 		--license GPLv3 \
 		--category admin \
 		--architecture all \
-		--depends "alternc (>= 3.2.10), fuse (>= 2.9.0)" \
-		--after-install debian/postinst \
+		--depends "alternc (>= 3.2.10), borgbackup, fuse" \
+		--after-install "debian/postinst" \
 		--chdir src \
 		.
