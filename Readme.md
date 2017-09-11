@@ -91,4 +91,4 @@ make
 
 # ROADMAP
 
-* [ ] 
+* [ x ] Use borgbackup package in any case (1.1.0)
