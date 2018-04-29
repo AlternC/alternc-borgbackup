@@ -33,6 +33,8 @@ echo "deb [trusted=yes] https://dl.bintray.com/alternc/stable stable main"  >> /
 apt-get update
 apt-get install borgbackup-bin alternc-borgbackup
 ```
+Don't forget configuration passphrase (follow configuration part)
+
 ### With Jessie
 
 ```shell
@@ -43,6 +45,7 @@ apt-get update
 apt-get install -t jessie-backports borgbackup
 apt-get install alternc-borgbackup
 ```
+Don't forget configuration passphrase (follow configuration part)
 
 ### With Stretch
 
@@ -52,6 +55,7 @@ echo "deb [trusted=yes] https://dl.bintray.com/alternc/stable stable main"  >> /
 apt-get update
 apt-get install alternc-borgbackup
 ```
+Don't forget configuration passphrase (follow configuration part)
 
 ## Nightly package
 
@@ -65,11 +69,16 @@ apt-get update
 apt-get upgrade
 apt-get install alternc-borgbackup
 ```
+Don't forget configuration passphrase (follow configuration part)
 
 # Configuration
 
-Once alternc-borgbackup installed , you can update :
-* configuration variable from panel 
+Once alternc-borgbackup installed ,
+
+* Install borg repository
+ * su -l alterncpanel -s borg init /var/backups/borg
+ * set a passphrase
+* Configure borg passphrase from panel
  * go to https://alternc_panel//adm_variables.php
  * update borgbackup values (borgbackup_backup_dir_local, borgbackup_backup_path, borgbackup_bin)
  * apply change

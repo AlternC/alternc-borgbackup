@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 case "$1" in
     configure)
@@ -6,12 +6,24 @@ case "$1" in
         groupadd fuse
         #Add alterncpanel to fuse group
         usermod -aG fuse alterncpanel
-        #Correct fuse mount /dev/ 
+        #Correct fuse mount /dev/
         #https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=617667
         chmod g+rw /dev/fuse
         chgrp fuse /dev/fuse
         #Update configurations variables
         /usr/share/alternc/install/upgrade/alternc-borgbackup.php
+
+        echo -e "\033[31m************************************************"
+	    echo "*                                                         *"
+	    echo "*   ALTERNC          ACTION REQUESTED                     *"
+	    echo "*                                                         *"
+	    echo "* Please :                                                *"
+	    echo "*   su -l alterncpanel -s borg init /var/backups/borg     *"
+	    echo "*   update borg passphrase from admin panel               *"
+	    echo "*   su -l alterncpanel -s /usr/lib/alternc/borgbackup.sh  *"
+	    echo "*                                                         *"
+	    echo "***********************************************************"
+	    echo -e "\033[0m"
     ;;
 esac
 exit 0
