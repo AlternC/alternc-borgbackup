@@ -2,6 +2,8 @@
 
 case "$1" in
     configure)
+        #Add fuse group if required
+        groupadd fuse
         #Add alterncpanel to fuse group
         usermod -aG fuse alterncpanel
         #Correct fuse mount /dev/ 
