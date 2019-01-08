@@ -25,7 +25,7 @@ borg_execution() {
                 ARCHIVE_NAME=$(date +%Y%m%d)
 
                 if [ ! -d $REPO ]; then
-                        borg init $REPO
+                        borg init -e none $REPO
                 fi
 
                 for local_mounted in $REP/$RESTORE_DIR/*; do
