@@ -1,3 +1,11 @@
+alternc-borgbackup (1.1.3) jessie stretch; urgency=medium
+
+  * Provide a stable release wit new debian packaging
+  * Feature are same
+  * We don't support anymore wheezy
+
+ -- Camille Lafitte <alternc@webelys.com>  Sat, 18 Jan 2023 17:00:00 +0100
+
 alternc-borgbackup (1.1.2) stable; urgency=medium
 
   * Folmedium init improvement

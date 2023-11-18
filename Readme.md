@@ -8,11 +8,9 @@ Each day a backup is done. User from panel can get a read access on previous bac
 You need :
 * debian server (from wheezy to Stretch)
 * alternc >= 3.2
-* borbackup-bin ou borgbackup package
- * with wheezy : [from webelys backport](https://bintray.com/webelys/debian)
+* borgbackup package
  * with jessie : [from backport](https://packages.debian.org/jessie-backports/borgbackup)
  * with stretch : [from stable](https://packages.debian.org/stretch/borgbackup)
-* [apt-transport-https](https://packages.debian.org/search?keywords=apt-transport-https) package to use https bintray service.
 
 
 # Installation
@@ -21,26 +19,13 @@ You need :
 
 You can download last package from :
 * github : [release page](../../releases/latest)
-* bintray : [ ![Bintray](https://api.bintray.com/packages/alternc/stable/alternc-borgbackup/images/download.svg) ](https://bintray.com/alternc/stable/alternc-borgbackup/_latestVersion)
-* from bintray repository
-
-### With Wheezy
-
-```shell
-apt-get install apt-transport-https
-echo "deb [trusted=yes] https://dl.bintray.com/webelys/debian wheezy main"  >> /etc/apt/sources.list.d/webelys.list
-echo "deb [trusted=yes] https://dl.bintray.com/alternc/stable stable main"  >> /etc/apt/sources.list.d/alternc.list
-apt-get update
-apt-get install borgbackup-bin alternc-borgbackup
-```
-Don't forget configuration passphrase (follow configuration part)
+* alternc repository [repository](https://debian.alternc.org)
 
 ### With Jessie
 
 ```shell
-apt-get install apt-transport-https
-echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list
-echo "deb [trusted=yes] https://dl.bintray.com/alternc/stable stable main"  >> /etc/apt/sources.list.d/alternc.list
+sudo wget https://debian.alternc.org/key.txt -O /usr/share/keyrings/alternc.asc
+echo "deb [signed-by=/usr/share/keyrings/alternc.asc] https://debian.alternc.org/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/alternc.list > /dev/null
 apt-get update
 apt-get install -t jessie-backports borgbackup
 apt-get install alternc-borgbackup
@@ -50,8 +35,8 @@ Don't forget configuration passphrase (follow configuration part)
 ### With Stretch
 
 ```shell
-apt-get install apt-transport-https
-echo "deb [trusted=yes] https://dl.bintray.com/alternc/stable stable main"  >> /etc/apt/sources.list.d/alternc.list
+sudo wget https://debian.alternc.org/key.txt -O /usr/share/keyrings/alternc.asc
+echo "deb [signed-by=/usr/share/keyrings/alternc.asc] https://debian.alternc.org/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/alternc.list > /dev/null
 apt-get update
 apt-get install alternc-borgbackup
 ```
@@ -59,16 +44,15 @@ Don't forget configuration passphrase (follow configuration part)
 
 ## Nightly package
 
-You can get last package from bintray, it's follow git master branch
-
-Following your distribution, you must first enable borgbackup repository.
+We provide an agnostic distribution package, you can try latest version with our experimental repository
 
 ```shell
-echo "deb [trusted=yes] https://dl.bintray.com/alternc/nightly stable main"  >> /etc/apt/sources.list.d/alternc.list
-apt-get update
+sudo wget https://debian.alternc.org/key.txt -O /usr/share/keyrings/alternc.asc
+echo "deb [signed-by=/usr/share/keyrings/alternc.asc] https://debian.alternc.org/ experimental main" | sudo tee /etc/apt/sources.list.d/alternc.list > /dev/null
 apt-get upgrade
 apt-get install alternc-borgbackup
 ```
+
 Don't forget configuration passphrase (follow configuration part)
 
 # Configuration
@@ -85,21 +69,19 @@ Once alternc-borgbackup installed ,
 
 # Packaging from source
 
-To generate package we use [fpm tool](https://github.com/jordansissel/fpm)
+You can use default debian command as debuild` or `dpkg-buildpackage`
 
 ```shell
-apt-get install ruby ruby-dev rubygems build-essential
-gem install --no-ri --no-rdoc fpm
 
 git clone https://github.com/AlternC/alternc-borgbackup
 cd alternc-borgbackup
-make
+dpkg-buildpackage -us -b
 
 ```
 
 
 # ROADMAP
 
-* [ ] Manage a standard a debian packaging
+* [ x ] Manage a standard a debian packaging
 * [ x ] Use borgbackup package in any case (1.1.0)
 * [ x ] 1.1 borgbackup compatibilty (1.1.2)
