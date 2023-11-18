@@ -1,0 +1,30 @@
+alternc-borgbackup (1.1.2) stable; urgency=medium
+
+  * Folmedium init improvement
+  * encryption is required
+
+ -- Camille Lafitte <alternc@webelys.com>  Tue, 08 Jan 2019 17:40:19 +0100
+
+alternc-borgbackup (1.1.1) stable; urgency=medium
+
+  * Minor evolve about iteration state during packaging
+	
+ -- Camille Lafitte <alternc@webelys.com>  Tue, 01 May 2018 14:52:11 +0200
+
+alternc-borgbackup (1.1.0) stable; urgency=medium
+
+  * use borgbackup package
+
+ -- Camille Lafitte <alternc@webelys.com>  Mon, 11 Sep 2017 12:15:15 +0200
+ 
+alternc-borgbackup (1.0.1) stable; urgency=medium
+
+  * Bugfix : set correct dependency
+
+ -- Camille Lafitte <alternc@webelys.com>  Tue, 31 Jan 2017 09:59:45 0100
+
+alternc-borgbackup (1.0.0) stable; urgency=medium
+
+  * First release
+
+ -- Camille Lafitte <alternc@webelys.com>  Mon, 30 Jan 2017 19:11:53 +0100 

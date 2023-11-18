@@ -1,0 +1,21 @@
+Source: alternc-borgbackup
+Section: admin
+Priority: optional
+Maintainer: Camille Lafitte <alternc@webelys.com>
+Build-Depends: debhelper (>= 9),
+               devscripts,
+               git
+Standards-Version: 3.9.8
+
+Package: alternc-borgbackup
+Architecture: all
+Depends: alternc (>= 3.2.10)
+       , borgbackup
+       , fuse
+Description: This alternc plugin propose to backup all accounts 
+ data to a borgbackup server storage.
+ Each day a backup is done. User from panel can get a read access 
+ on previous backup, from backup directory on their root workspace.
+ .
+ More information at https://alternc.com/
+Homepage: https://alternc.com/
