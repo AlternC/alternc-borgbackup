@@ -100,5 +100,6 @@ make
 
 # ROADMAP
 
+* [ ] Manage a standard a debian packaging
 * [ x ] Use borgbackup package in any case (1.1.0)
 * [ x ] 1.1 borgbackup compatibilty (1.1.2)
